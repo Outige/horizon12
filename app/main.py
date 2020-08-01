@@ -110,13 +110,22 @@ def index():
                 email_confirmed_at=datetime.datetime.utcnow(),
                 password=password,
                 name=name,
-                biz_bool=1,
+                biz_bool=0,
             )
             db.session.add(user)
             db.session.commit()
             # takes employee to employee profile
             return redirect('/login')
         else:
+            user = User(
+                email=email,
+                email_confirmed_at=datetime.datetime.utcnow(),
+                password=password,
+                name=name,
+                biz_bool=1,
+            )
+            db.session.add(user)
+            db.session.commit()
             # takes you to the business profile
             return redirect('/login')
 
@@ -145,10 +154,45 @@ def create_job():
         pay = request.form.get('pay')
         short = request.form.get('short')
         print(short)
+        job = Jobs(
+            title=title,
+            location=location,
+            category=category,
+            pay=pay,
+            short=short,
+        )
+        db.session.add(job)
+        db.session.commit()
         # ! /bsuiness/ you need to get the id somehow
         # go to the business profile
-        return redirect('/business/')
+        #return redirect('/business')
+        return render_template('business.html')
 
+@app.route('/jobs/update', methods=['POST'])
+def update_job():
+    user_id = request.form.get('id')
+    job_id = request.form.get('job_id')
+    print(user_id)
+    print(job_id)
+    
+    #Jobs.query().filter(Jobs.id == job_id).update({"user_id": user_id})
+    #db.session.commit()
+
+    return Response(status=201, mimetype='application/json')
+    #db.session.add(job)
+    #db.session.commit()
+
+# @app.route('/jobs/update', methods=['POST'])
+# def update_job():
+#     user_id = request.form.get('id')
+#     job_id = request.form.get('job_id')
+#     print(user_id)
+#     print(job_id)
+#     #Jobs.query().filter(Jobs.id == job_id).update({"user_id": user_id})
+#     #db.session.commit()
+#     return Response(status=201, mimetype='application/json')
+#     #db.session.add(job)
+#     #db.session.commit()
 
 @app.route('/register', methods=['POST'])
 def register():
@@ -164,15 +208,25 @@ def login():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
-
-        # check if the user 
-        print(email, password)
+        # check if the user exists
         # logic to determine if user exists
+        #check if the query returns null
+        if (User.query.filter(User.email == email).first() != None):
+            #user exists
+            print("Here")
+        else:
+            #user does not exist
+            return redirect('/login')
+
+
 
         # replace if true with logic to determine if user is a business
-        if False:
+
+        if ( User.query.filter(User.email == email).first().biz_bool ):
+            #take to the business page
             return render_template('business.html')
         else:
+            #take to the job board
             return redirect(url_for('jobs', email=email))
     elif request.method == 'GET':
         return render_template('login.html')
@@ -184,8 +238,10 @@ def login():
 def jobs():
     # get my id
     print(request.args.get('email'))
-
-    return render_template('jobs.html')
+    user = User.query.filter(User.email == request.args.get('email')).first()
+    print(user.name)
+    jobs = Jobs.query.all()
+    return render_template('jobs.html', jobs=jobs, user=user)
 
 @app.route('/jobs/apply/<int:job_id>/<int:user_id>')
 def apply(job_id, user_id):
