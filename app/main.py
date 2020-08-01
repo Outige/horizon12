@@ -148,11 +148,12 @@ def add_job():
     return Response(status=201, mimetype='application/json')
 
 # Display job form and create job on submission
-@app.route('/jobs/create', methods=['GET', 'POST'])
-def create_job():
+@app.route('/jobs/create/<int:id>', methods=['GET', 'POST'])
+def create_job(id):
     if request.method == 'GET':
-        return render_template('job.html')
+        return render_template('job.html', id=id)
     elif request.method == 'POST':
+        return redirect('/business/' + str(id))
         title = request.form.get('title')
         location = request.form.get('location')
         category = request.form.get('category')
