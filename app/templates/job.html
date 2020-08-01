@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Create Job</title>
+{% endblock%}
+
+{% block body %}
+<h1>Hello, world</h1>
+<form action="/jobs/create">
+    <input type="text" name="title" placeholder="title">
+    <input type="text" name="location" placeholder="location">
+    <input type="text" name="category" placeholder="category">
+    <input type="text" name="pay" placeholder="pay">
+    <input type="text" name="short" placeholder="description">
+    <input type="submit" value="Create Job">
+</form>
+{% endblock%}

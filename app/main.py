@@ -95,9 +95,21 @@ if not User.query.filter(User.email == 'admin@example.com').first():
     db.session.commit()
 
 
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('register.html')
+    if request.method == 'GET':
+        return render_template('register.html')
+    elif request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+        name = request.form.get('name')
+        print(email, password, name)
+        if request.form.getlist('isbusiness') == []:
+            # takes employee to employee profile
+            return redirect('/login')
+        else:
+            # takes you to the business profile
+            return redirect('/login')
 
 @app.route('/jobs/add', methods=['POST'])
 def add_job():
@@ -112,6 +124,19 @@ def add_job():
     db.session.add(job)
     db.session.commit()
     return Response(status=201, mimetype='application/json')
+
+@app.route('/jobs/create', methods=['GET', 'POST'])
+def create_job():
+    if request.method == 'GET':
+        return render_template('job.htnl')
+    elif request.method == 'POST':
+        title = request.form.get('title')
+        location = request.form.get('location')
+        category = request.form.get('category')
+        pay = request.form.get('pay')
+        short = request.form.get('short')
+        # ! /bsuiness/ you need to get the id somehow
+        return redirect('/business/')
 
 
 @app.route('/register', methods=['POST'])
@@ -128,15 +153,16 @@ def login():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
+
+        # check if the user 
         print(email, password)
-        
         # logic to determine if user exists
 
         # replace if true with logic to determine if user is a business
         if False:
             return render_template('business.html')
         else:
-            return redirect('/jobs')
+            return redirect(url_for('jobs', email=email))
     elif request.method == 'GET':
         return render_template('login.html')
 
@@ -145,6 +171,9 @@ def login():
 # ?-----------------------
 @app.route('/jobs')
 def jobs():
+    # get my id
+    print(request.args.get('email'))
+
     return render_template('jobs.html')
 
 @app.route('/jobs/apply/<int:job_id>/<int:user_id>')
