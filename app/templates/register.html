@@ -6,13 +6,10 @@
 
 {% block body %}
 <!-- <a href="/login">Have an account?</a> -->
-<a href="{{ url_for('login') }}">Have an account?</a>
+<a href="/login">Have an account?</a>
 <br>
 <form action="/register" method="POST">
     <input type="checkbox" name="isbusiness" value="isbusiness" unchecked>
     <input type="submit" value="Register">
 </form>
-<a href="/register">Register business</a>
-<br>
-<a href="/refister">Register employee</a>
 {% endblock%}
