@@ -2,10 +2,11 @@
 
 {% block head %}
 <title>Register</title>
+<link rel="stylesheet" href="../static/styles/register.css">
+
 {% endblock%}
 
-{% block body %}
-<!-- <a href="/login">Have an account?</a> -->
+<!-- {% block b %}
 <a href="/login">Have an account?</a>
 <br>
 <form action="/" method="POST">
@@ -19,4 +20,34 @@
     <br>
     <input type="submit" value="Register">
 </form>
+{% endblock%} -->
+
+{% block body %}
+<div class="title">
+    <h1>RiNRE</h1>
+    <h2>create careers.</h2>
+</div>
+
+<form action="/" method="POST">
+    <div class="form-input">
+        <input type="text" name="email" placeholder="email" class="typing">
+    </div>
+
+    <div class="form-input">
+        <input type="text" name="name" placeholder="name" class="typing">
+    </div>
+
+    <div class="form-input">
+        <input type="text" name="password" placeholder="password" class="typing">
+    </div>
+
+    <div class="cb">
+        <h6>Employer</h6> <input type="checkbox" name="isbusiness" value="isbusiness" class="cb-input" unchecked>
+    </div>
+
+
+    <br>
+    <input type="submit" value="Register" class="sub">
+</form>
+<a href="/">Need an account?</a>
 {% endblock%}
