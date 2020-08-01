@@ -1,0 +1,96 @@
+ .title {
+    color: azure;
+    text-align: center;
+    margin-top: 20rem;
+    margin-bottom: 10rem;
+}
+
+h1 {
+    font-size: 8rem;
+    padding: 0;
+    margin: 0;
+}
+
+h2 {
+    font-size: 2rem;
+    padding: 0;
+    margin: 0;
+}
+
+form {
+    text-align: center;
+}
+
+.form-input {
+    background-color: white;
+    /* display: inline; */
+    width: 30rem;
+    height: 5rem;
+    /* padding: 2rem 1rem; */
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 2rem;
+    border-radius: 25px;
+}
+
+.typing{
+    background-color: rgba(0, 0, 0, 0);
+    border: 0;
+    /* color: blue; */
+    /* height: 5rem; */
+    font-size: 2rem;
+    width: 75%;
+    margin-top: 1rem;
+}
+
+.typing::placeholder {
+    color: #b5b5b5;
+}
+
+
+.typing:focus {
+    outline: 0;
+}
+
+.sub {
+    font-size: 2rem;
+    width: 15rem;
+    padding: 0.5rem 0;
+    border-radius: 15px;
+    border: 0px;
+    color: #7fade3;
+
+
+    background-color: #f0f2f5;
+
+
+
+    /* border: 1px solid white; */
+}
+
+.sub:active {
+    color: #367bc9;
+    outline: 0;
+    /* border: 1px solid white; */
+}
+
+/*
+form {
+    margin-top: 5rem;
+    text-align: center;
+}
+
+.form-input {
+    background-color: aqua;
+    margin: 0 auto;
+    width: 3rem;
+    text-align: left;
+    margin-top: 3rem;
+}
+
+input {
+    border-radius: 15px;
+    border: 0;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+} */

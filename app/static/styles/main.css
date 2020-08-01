@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'gothic';
+    src: url('../fonts/URWGothic-Demi.otf');
+
+  }  
+
+body {
+    background-color: #367bc9;
+    font-family: 'gothic', sans-serif;
+}
