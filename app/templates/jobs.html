@@ -1,6 +1,12 @@
-{% extends 'base.html' %} {% block head %}
+{% extends 'base.html' %}
+
+{% block head %}
 <title>Job listings</title>
-{% endblock%} {% block body %}
+<link rel="stylesheet" href="../static/styles/jobs.css">
+{% endblock%}
+
+
+{% block body %}
 <!-- ! This 3 is also jinja2 kakak -->
 <a href="/employee/3">User profile</a>
 <br>
@@ -168,4 +174,5 @@
 </div>
 
 <!-- ! so here  -->
-<a href="/jobs/apply/2/2 " id="job-2 ">Apply Now</a> {% endblock%}
+<a href="/jobs/apply/2/2 " id="job-2 ">Apply Now</a>
+{% endblock%}
