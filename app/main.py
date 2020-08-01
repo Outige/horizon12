@@ -32,7 +32,7 @@ db = SQLAlchemy(app)
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    biz_bool = db.Column('biz_bool', db.Boolean(), nullable=False, server_default='1')
+    biz_bool = db.Column('biz_bool', db.Boolean(), nullable=False, server_default='0')
 
     # User authentication information. The collation='NOCASE' is required
     # to search case insensitively when USER_IFIND_MODE is 'nocase_collation'.
@@ -41,8 +41,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(255), nullable=False, server_default='')
 
     # User information
-    first_name = db.Column(db.String(100), nullable=False, server_default='')
-    last_name = db.Column(db.String(100), nullable=False, server_default='')
+    name = db.Column(db.String(100), nullable=False, server_default='')
 
     # Define the relationship to Role via UserRoles
     roles = db.relationship('Role', secondary='user_roles')
@@ -103,8 +102,18 @@ def index():
         email = request.form.get('email')
         password = request.form.get('password')
         name = request.form.get('name')
+        #add to database
         print(email, password, name)
         if request.form.getlist('isbusiness') == []:
+            user = User(
+                email=email,
+                email_confirmed_at=datetime.datetime.utcnow(),
+                password=password,
+                name=name,
+                biz_bool=1,
+            )
+            db.session.add(user)
+            db.session.commit()
             # takes employee to employee profile
             return redirect('/login')
         else:
@@ -128,14 +137,16 @@ def add_job():
 @app.route('/jobs/create', methods=['GET', 'POST'])
 def create_job():
     if request.method == 'GET':
-        return render_template('job.htnl')
+        return render_template('job.html')
     elif request.method == 'POST':
         title = request.form.get('title')
         location = request.form.get('location')
         category = request.form.get('category')
         pay = request.form.get('pay')
         short = request.form.get('short')
+        print(short)
         # ! /bsuiness/ you need to get the id somehow
+        # go to the business profile
         return redirect('/business/')
 
 
