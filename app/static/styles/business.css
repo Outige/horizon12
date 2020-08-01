@@ -1,0 +1,223 @@
+.business {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.pp {
+    grid-row: 1/ 1;
+    /*     display: block;
+    margin-right: auto;
+     margin-left: auto;
+*/
+    margin: 10px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    /*     display: inline-block;
+ */
+}
+
+.circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: #edf4ff;
+}
+
+
+/* The navigation bar */
+
+.navbar {
+    overflow: hidden;
+    background-color: rgb(255, 255, 255);
+    position: fixed;
+    /* Set the navbar to fixed position */
+    top: 0;
+    /* Position the navbar at the top of the page */
+    width: 100%;
+    /* Full width */
+}
+
+
+/* Links inside the navbar */
+
+.navbar a {
+    float: left;
+    display: block;
+    color: #367bc9;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 2rem;
+    padding-bottom: 10px;
+}
+
+.navbar p {
+    float: left;
+    display: block;
+    color: #367bc9;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 2rem;
+    padding-bottom: 10px;
+    margin-bottom: 0;
+}
+
+
+/* Change background on mouse-over */
+
+.navbar a:hover {
+    background: #ddd;
+    color: black;
+}
+
+
+/* Main content */
+
+.main {
+    margin-top: 30px;
+    /* Add a top margin to avoid content overlay */
+}
+
+.navbar-title {
+    text-align: center;
+}
+
+.space {
+    height: 60px;
+}
+
+h1 {
+    color: white;
+}
+
+.heading {
+    margin: 15px;
+    text-align: center;
+}
+
+.desc {
+    color: whitesmoke;
+    margin-top: 0;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+
+/*
+*/
+
+@font-face {
+    font-family: 'gothic';
+    src: url('../fonts/URWGothic-Demi.otf');
+}
+
+@font-face {
+    font-family: 'gothic-light';
+    src: url('../fonts/URWGothic-Book.otf');
+}
+
+.job-listing {
+    font-family: 'gothic', sans-serif;
+    background-color: white;
+    width: 400;
+    margin: 15px;
+    border-radius: 30px;
+    padding: 15px;
+}
+
+.job-title {
+    display: grid;
+}
+
+#pp {
+    grid-row: 1/2;
+    /*     display: block;
+    margin-right: auto;
+     margin-left: auto;
+*/
+    margin: 10px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    /*     display: inline-block;
+ */
+}
+
+.job-text {
+    grid-row: 1 / 2;
+    margin: 15px;
+    padding: auto;
+    text-justify: auto;
+    font-size: 15px;
+    max-height: 100px;
+}
+
+.job-name {
+    text-justify: auto;
+    font-size: 25px;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.co-name {
+    margin-top: 0px;
+    padding-top: 0px;
+    opacity: 0.5;
+    text-justify: auto;
+    font-size: 15px;
+}
+
+.pay {
+    text-align: center;
+    width: 100px;
+    font-size: 2em;
+    grid-row: 1/2;
+    margin: 10px;
+}
+
+.job-desc {
+    grid-row: 1/2;
+    font-family: 'gothic-light', sans-serif;
+    font-weight: 0.5;
+    margin-left: 15px;
+}
+
+.job-extra {
+    padding: auto;
+    display: grid;
+}
+
+.apply {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    min-width: 100%;
+    text-align: center;
+    height: 50px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.worker {
+    padding: 15px;
+}
+
+.accept {
+    color: #50c085;
+    padding: 10px;
+    padding-top: 12px;
+    border-color: #50c085;
+    border-width: 2px;
+    border-style: double;
+    border-radius: 5px;
+}

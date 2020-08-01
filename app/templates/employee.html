@@ -1,10 +1,27 @@
-{% extends 'base.html' %}
-
-{% block head %}
+{% extends 'base.html' %} {% block head %}
 <title>[some employee name with jinja kak]</title>
-{% endblock%}
-
-{% block body %}
+<link rel="stylesheet" href="../static/styles/employee.css"> {% endblock%} {% block body %}
 <a href="">Employee profile</a>
-<h1>{{ id }}</h1>
+
+<div class="navbar">
+    <div style="">
+        <a href="#home">
+            < </a>
+    </div>
+
+    <p style="text-align: right;">
+        Viewing employee
+    </p>
+
+</div>
+<br>
+<div class="space">
+
+</div>
+<div class="person">
+    <div class="circle">
+        <img class="pp" src="../static/img/image.jpg">
+    </div>
+
+</div>
 {% endblock%}

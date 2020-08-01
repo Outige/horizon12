@@ -1,15 +1,6 @@
-{% extends 'base.html' %}
-
-{% block head %}
+{% extends 'base.html' %} {% block head %}
 <title>Job listings</title>
-<link rel="stylesheet" href="../static/styles/jobs.css">
-{% endblock%}
-
-
-{% block body %}
-
-
-{% for job in jobs %}
+<link rel="stylesheet" href="../static/styles/jobs.css"> {% endblock%} {% block body %} {% for job in jobs %}
 <div class="job-listing">
     <div class="job-title">
         <img id="pp" src="../static/img/interior-wall-paint-job.jpg">
@@ -208,5 +199,4 @@
 </div>
 
 <!-- ! so here  -->
-<a href="/jobs/apply/2/2 " id="job-2 ">Apply Now</a>
-{% endblock%}
+<a href="/jobs/apply/2/2 " id="job-2 ">Apply Now</a> {% endblock%}
