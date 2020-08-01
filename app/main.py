@@ -63,12 +63,13 @@ class Jobs(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
 
     poster_id = db.Column(db.String(1000))
-
+    biz_name  = db.Column(db.String(1000))
     title = db.Column(db.String(1000))
     location = db.Column(db.String(1000))
     category = db.Column(db.String(1000))
     pay = db.Column(db.String(1000))
     short = db.Column(db.String(1000))
+    status = db.Column(db.String(1000))
     user_id = db.Column(db.Integer(), db.ForeignKey('users.id', ondelete='CASCADE')) #the foreign key to the user table
 
 # Create all database tables
@@ -96,7 +97,7 @@ if not User.query.filter(User.email == 'admin@example.com').first():
     db.session.add(user)
     db.session.commit()
 
-
+# Register
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'GET':
@@ -146,6 +147,7 @@ def add_job():
     db.session.commit()
     return Response(status=201, mimetype='application/json')
 
+# Display job form and create job on submission
 @app.route('/jobs/create', methods=['GET', 'POST'])
 def create_job():
     if request.method == 'GET':
@@ -156,7 +158,9 @@ def create_job():
         category = request.form.get('category')
         pay = request.form.get('pay')
         short = request.form.get('short')
-        ###########TODO:
+        biz_name = request.form.get('biz_name')
+        status = request.form.get('status')
+        ###########TODO: Get this from the email passed in
         poster_id = request.form.get('poster_id')
         print(poster_id)
         ##############
@@ -168,6 +172,8 @@ def create_job():
             pay=pay,
             short=short,
             poster_id=poster_id,
+            biz_name=biz_name,
+            status=status,
         )
         db.session.add(job)
         db.session.commit()
@@ -177,6 +183,7 @@ def create_job():
         #return redirect('/business')
         return render_template('business.html')
 
+# Update job listing TODO: !!!!!!
 @app.route('/jobs/update', methods=['POST'])
 def update_job():
     user_id = request.form.get('id')
@@ -203,15 +210,7 @@ def update_job():
 #     #db.session.add(job)
 #     #db.session.commit()
 
-@app.route('/register', methods=['POST'])
-def register():
-    if request.form.getlist('isbusiness') == []:
-        # takes employee to employee profile
-        return render_template('employee.html')
-    else:
-        # takes you to the business profile
-        return render_template('business.html')
-
+# Display login form and login on submission
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -227,10 +226,6 @@ def login():
             #user does not exist
             return redirect('/login')
 
-
-
-        # replace if true with logic to determine if user is a business
-
         if ( User.query.filter(User.email == email).first().biz_bool ):
             #take to the business page
             return render_template('business.html')
@@ -240,17 +235,23 @@ def login():
     elif request.method == 'GET':
         return render_template('login.html')
 
-# ?-----------------------
-# Employee
-# ?-----------------------
+# Display jobs for users to apply for
 @app.route('/jobs')
 def jobs():
     # get my id
     print(request.args.get('email'))
     user = User.query.filter(User.email == request.args.get('email')).first()
-    print(user.name)
+    users = User.query.all()
+    #print(user.name)
     jobs = Jobs.query.all()
-    return render_template('jobs.html', jobs=jobs, user=user)
+    #business name
+    #jobbies = {}
+    #for job in jobs:
+        #jobbies.update(job)
+        #job.update( {'name' : "poes"} )
+
+
+    return render_template('jobs.html', jobs=jobs, user=user, users=users)
 
 @app.route('/jobs/apply/<int:job_id>/<int:user_id>')
 def apply(job_id, user_id):
