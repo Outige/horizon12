@@ -253,10 +253,11 @@ def jobs():
 
     return render_template('jobs.html', jobs=jobs, user=user, users=users)
 
-@app.route('/jobs/apply/<int:job_id>/<int:user_id>')
-def apply(job_id, user_id):
-    job_link = '/jobs#job-' + str(job_id)
-    return redirect(job_link)# render_template('jobs.html')
+@app.route('/jobs/apply/<int:job_id>/<int:user_id>/<string:email>')
+def apply(job_id, user_id, email):
+    return redirect(url_for('jobs', email=email))
+    # job_link = '/jobs#job-' + str(job_id)
+    # return redirect(job_link)# render_template('jobs.html')
 
 @app.route('/employee/<int:id>')
 def employee(id):
