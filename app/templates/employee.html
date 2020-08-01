@@ -22,6 +22,45 @@
     <div class="circle">
         <img class="pp" src="../static/img/image.jpg">
     </div>
+    <div class="heading">
+        <h1>
+            Nails is our game inc.
+        </h1>
+    </div>
+    <div class="desc">
+        This is our project, we like nails. nails nails nails. nail me nail you. If you want to learn more about our business, please apply for a job please and thanks you too.
+    </div>
+
+    <a class="create" href="/jobs/create/{{ id }}">Create a Job</a>
+
 
 </div>
-{% endblock%}
+
+<title>Job listings</title>
+<link rel="stylesheet" href="../static/styles/jobs.css"> {% endblock%} {% block body %} {% for job in jobs %}
+<div class="job-listing">
+    <div class="job-title">
+        <img id="pp" src="../static/img/interior-wall-paint-job.jpg">
+        <div class="job-text">
+            <!-- <h2 class="job-name">Blowjob Paintjob</h2> -->
+            <h2 class="job-name">{{ job.title }}</h2>
+            <br>
+            <h4 class="co-name">need company name</h4>
+        </div>
+    </div>
+    <div class="job-extra">
+        <p class="pay">{{ job.pay }}</p>
+        <p class="job-desc">{{ job.short }}</p>
+    </div>
+
+    <!-- <a href="/jobs/apply/2/2"> -->
+    <a href="/jobs/apply/2/{{ user.id }}/{{ user.email }}">
+
+        <div class="apply">
+            <p style="color: white; padding-top: 15px; padding-bottom: 20px; font-size: 2rem;">Apply</p>
+        </div>
+    </a>
+
+
+</div>
+{% endfor %} {% endblock%}
