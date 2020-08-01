@@ -3,7 +3,7 @@ import datetime
 from flask_sqlalchemy import SQLAlchemy
 from flask_user import current_user, login_required, roles_required, UserManager, UserMixin
 from flask import Response
-
+import requests
 
 # Class-based application configuration
 class ConfigClass(object):
@@ -166,10 +166,11 @@ def create_job(id):
         pay = request.form.get('pay')
         short = request.form.get('short')
 
+        user = User.query.filter(User.id == id).first()
         ###########TODO: Get this from the email passed in
-        biz_name = request.form.get('biz_name') #fix
-        status = request.form.get('status') #fix
-        poster_id = request.form.get('poster_id') #fix
+        biz_name = user.name #fix
+        status = 0 #fix
+        poster_id = id #fix
         print(poster_id)
         ##############
         print(short)
@@ -199,7 +200,6 @@ def update_job():
     job_id = request.form.get('job_id')
     print(user_id)
     print(job_id)
-    
     #Jobs.query().filter(Jobs.id == job_id).update({"user_id": user_id})
     #db.session.commit()
 
@@ -287,3 +287,13 @@ def employee(id):
 @app.route('/business/<int:id>')
 def business(id):
     return render_template('business.html', id=id)
+
+# Block chain
+@app.route('/addcontract', methods=['POST'])
+def addcontract():
+    r = requests.post('http://robabrams.homeip.net:9999/api/create', data = {
+    "companyID": "100",
+    "userID": "poes",
+    "amount": "69",
+    "jobID": "4"})
+    return Response(status=201, mimetype='application/json')
