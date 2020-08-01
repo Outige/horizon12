@@ -1,77 +1,171 @@
-{% extends 'base.html' %}
-
-{% block head %}
+{% extends 'base.html' %} {% block head %}
 <title>Job listings</title>
-{% endblock%}
-
-{% block body %}
-    <!-- ! This 3 is also jinja2 kakak -->
+{% endblock%} {% block body %}
+<!-- ! This 3 is also jinja2 kakak -->
 <a href="/employee/3">User profile</a>
 <br>
 <div class="job-listing">
     <!-- ! So this is gonna be jinja2 teritory -->
     <!-- ! the 2 here: we will be looping through some job object -->
     <!-- ! and we get job.id instead of 2 -->
-    <br>
     <div class="job-title">
-        <img id="pp" src="../static/interior-wall-paint-job.jpg">
-        <p>Blowjob Paintjob</p>
+        <img id="pp" src="../static/img/interior-wall-paint-job.jpg">
+        <div class="job-text">
+            <h2 class="job-name">Blowjob Paintjob</h2>
+            <br>
+            <h4 class="co-name">Local Gardening corp.</h4>
+        </div>
     </div>
-    <a href="/jobs/apply/2/2">Apply</a>
+    <div class="job-extra">
+        <p class="pay">R600</p>
+        <p class="job-desc">
+            This is where explanatory text will appear. Say something that will reflect the nature of the job.
+        </p>
+    </div>
+
+    <a href="/jobs/apply/2/2">
+        <div class="apply">
+            <p style="color: white; padding-top: 15px; padding-bottom: 20px; font-size: 2rem;">Apply</p>
+        </div>
+    </a>
+
 
 </div>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
-<h1>d</h1>
+<div class="job-listing">
+    <!-- ! So this is gonna be jinja2 teritory -->
+    <!-- ! the 2 here: we will be looping through some job object -->
+    <!-- ! and we get job.id instead of 2 -->
+    <div class="job-title">
+        <img id="pp" src="../static/img/interior-wall-paint-job.jpg">
+        <div class="job-text">
+            <h2 class="job-name">Blowjob Paintjob</h2>
+            <br>
+            <h4 class="co-name">Local Gardening corp.</h4>
+        </div>
+    </div>
+    <div class="job-extra">
+        <p class="pay">R600</p>
+        <p class="job-desc">
+            This is where explanatory text will appear. Say something that will reflect the nature of the job.
+        </p>
+    </div>
+
+    <a href="/jobs/apply/2/2">
+        <div class="apply">
+            <p style="color: white; padding-top: 15px; padding-bottom: 20px; font-size: 2rem;">Apply</p>
+        </div>
+    </a>
+
+
+</div>
+<div class="job-listing">
+    <!-- ! So this is gonna be jinja2 teritory -->
+    <!-- ! the 2 here: we will be looping through some job object -->
+    <!-- ! and we get job.id instead of 2 -->
+    <div class="job-title">
+        <img id="pp" src="../static/img/interior-wall-paint-job.jpg">
+        <div class="job-text">
+            <h2 class="job-name">Blowjob Paintjob</h2>
+            <br>
+            <h4 class="co-name">Local Gardening corp.</h4>
+        </div>
+    </div>
+    <div class="job-extra">
+        <p class="pay">R600</p>
+        <p class="job-desc">
+            This is where explanatory text will appear. Say something that will reflect the nature of the job.
+        </p>
+    </div>
+
+    <a href="/jobs/apply/2/2">
+        <div class="apply">
+            <p style="color: white; padding-top: 15px; padding-bottom: 20px; font-size: 2rem;">Apply</p>
+        </div>
+    </a>
+
+
+</div>
+<div class="job-listing">
+    <!-- ! So this is gonna be jinja2 teritory -->
+    <!-- ! the 2 here: we will be looping through some job object -->
+    <!-- ! and we get job.id instead of 2 -->
+    <div class="job-title">
+        <img id="pp" src="../static/img/interior-wall-paint-job.jpg">
+        <div class="job-text">
+            <h2 class="job-name">Blowjob Paintjob</h2>
+            <br>
+            <h4 class="co-name">Local Gardening corp.</h4>
+        </div>
+    </div>
+    <div class="job-extra">
+        <p class="pay">R600</p>
+        <p class="job-desc">
+            This is where explanatory text will appear. Say something that will reflect the nature of the job.
+        </p>
+    </div>
+
+    <a href="/jobs/apply/2/2">
+        <div class="apply">
+            <p style="color: white; padding-top: 15px; padding-bottom: 20px; font-size: 2rem;">Apply</p>
+        </div>
+    </a>
+
+
+</div>
+<div class="job-listing">
+    <!-- ! So this is gonna be jinja2 teritory -->
+    <!-- ! the 2 here: we will be looping through some job object -->
+    <!-- ! and we get job.id instead of 2 -->
+    <div class="job-title">
+        <img id="pp" src="../static/img/interior-wall-paint-job.jpg">
+        <div class="job-text">
+            <h2 class="job-name">Blowjob Paintjob</h2>
+            <br>
+            <h4 class="co-name">Local Gardening corp.</h4>
+        </div>
+    </div>
+    <div class="job-extra">
+        <p class="pay">R600</p>
+        <p class="job-desc">
+            This is where explanatory text will appear. Say something that will reflect the nature of the job.
+        </p>
+    </div>
+
+    <a href="/jobs/apply/2/2">
+        <div class="apply">
+            <p style="color: white; padding-top: 15px; padding-bottom: 20px; font-size: 2rem;">Apply</p>
+        </div>
+    </a>
+
+
+</div>
+<div class="job-listing">
+    <!-- ! So this is gonna be jinja2 teritory -->
+    <!-- ! the 2 here: we will be looping through some job object -->
+    <!-- ! and we get job.id instead of 2 -->
+    <div class="job-title">
+        <img id="pp" src="../static/img/interior-wall-paint-job.jpg">
+        <div class="job-text">
+            <h2 class="job-name">Blowjob Paintjob</h2>
+            <br>
+            <h4 class="co-name">Local Gardening corp.</h4>
+        </div>
+    </div>
+    <div class="job-extra">
+        <p class="pay">R600</p>
+        <p class="job-desc">
+            This is where explanatory text will appear. Say something that will reflect the nature of the job.
+        </p>
+    </div>
+
+    <a href="/jobs/apply/2/2">
+        <div class="apply">
+            <p style="color: white; padding-top: 15px; padding-bottom: 20px; font-size: 2rem;">Apply</p>
+        </div>
+    </a>
+
+
+</div>
 
 <!-- ! so here  -->
-<a href="/jobs/apply/2/2" id="job-2">Apply</a>
-
-<h1>d</h1>
-{% endblock%}
+<a href="/jobs/apply/2/2 " id="job-2 ">Apply Now</a> {% endblock%}
