@@ -110,13 +110,22 @@ def index():
                 email_confirmed_at=datetime.datetime.utcnow(),
                 password=password,
                 name=name,
-                biz_bool=1,
+                biz_bool=0,
             )
             db.session.add(user)
             db.session.commit()
             # takes employee to employee profile
             return redirect('/login')
         else:
+            user = User(
+                email=email,
+                email_confirmed_at=datetime.datetime.utcnow(),
+                password=password,
+                name=name,
+                biz_bool=1,
+            )
+            db.session.add(user)
+            db.session.commit()
             # takes you to the business profile
             return redirect('/login')
 
@@ -164,15 +173,25 @@ def login():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
-
-        # check if the user 
-        print(email, password)
+        # check if the user exists
         # logic to determine if user exists
+        #check if the query returns null
+        if (User.query.filter(User.email == email).first() != None):
+            #user exists
+            print("Here")
+        else:
+            #user does not exist
+            return redirect('/login')
+
+       
 
         # replace if true with logic to determine if user is a business
-        if False:
+
+        if ( User.query.filter(User.email == email).first().biz_bool ):
+            #take to the business page
             return render_template('business.html')
         else:
+            #take to the job board
             return redirect(url_for('jobs', email=email))
     elif request.method == 'GET':
         return render_template('login.html')
