@@ -126,6 +126,10 @@ def register():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+        print(email, password)
+        
         # logic to determine if user exists
 
         # replace if true with logic to determine if user is a business
