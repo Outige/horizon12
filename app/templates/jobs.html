@@ -1,6 +1,7 @@
 {% extends 'base.html' %} {% block head %}
 <title>Job listings</title>
-<link rel="stylesheet" href="../static/styles/jobs.css"> {% endblock%} {% block body %} {% for job in jobs %}
+<link rel="stylesheet" href="../static/styles/jobs.css"> {% endblock%} {% block body %} 
+{% for job in jobs %}
 <div class="job-listing">
     <div class="job-title">
         <img id="pp" src="../static/img/interior-wall-paint-job.jpg">
@@ -16,13 +17,43 @@
         <p class="job-desc">{{ job.short }}</p>
     </div>
 
-    <!-- <a href="/jobs/apply/2/2"> -->
-    <a href="/jobs/apply/2/{{ user.id }}/{{ user.email }}">
+    <!-- <a href="/jobs/apply/2/{{ user.id }}/{{ user.email }}">
 
         <div class="apply">
             <p style="color: white; padding-top: 15px; padding-bottom: 20px; font-size: 2rem;">Apply</p>
         </div>
-    </a>
+    </a> -->
+
+    {% set bar = apps | length %}
+    {% set foo = 0 %}
+    {% for i in range(bar) %}
+        {% if apps[i].job_id == job.id %}
+            {% set foo = 1 %}
+        {% endif %}
+
+        {% if i == (apps | length) - 1 %}
+
+
+            {% if foo == 1 %}
+                <a href="#">
+
+                    <div class="apply">
+                        <p style="color: darkgoldenrod; padding-top: 15px; padding-bottom: 20px; font-size: 2rem;">Pending</p>
+                    </div>
+                </a>
+            {% else %}
+                <a href="/jobs/apply/{{ job.id }}/{{ user.id }}/{{ user.email }}">
+
+                    <div class="apply">
+                        <p style="color: white; padding-top: 15px; padding-bottom: 20px; font-size: 2rem;">Apply</p>
+                    </div>
+                </a>
+            {% endif %}
+
+
+
+        {% endif %}
+    {% endfor %}
 
 
 </div>
