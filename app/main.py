@@ -62,7 +62,7 @@ class UserRoles(db.Model):
 class Jobs(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
 
-    poster_id = db.Column(db.String(1000))
+    poster_id = db.Column(db.Integer())
     biz_name  = db.Column(db.String(1000))
     title = db.Column(db.String(1000))
     location = db.Column(db.String(1000))
@@ -71,6 +71,12 @@ class Jobs(db.Model):
     short = db.Column(db.String(1000))
     status = db.Column(db.String(1000))
     user_id = db.Column(db.Integer(), db.ForeignKey('users.id', ondelete='CASCADE')) #the foreign key to the user table
+
+class Application(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    job_id = db.Column(db.Integer())
+    user_id = db.Column(db.Integer(), db.ForeignKey('users.id', ondelete='CASCADE')) #the foreign key to the user table
+    poster_id = db.Column(db.Integer())
 
 # Create all database tables
 db.create_all()
@@ -153,16 +159,17 @@ def create_job(id):
     if request.method == 'GET':
         return render_template('job.html', id=id)
     elif request.method == 'POST':
-        return redirect('/business/' + str(id))
+        #return redirect('/business/' + str(id))
         title = request.form.get('title')
         location = request.form.get('location')
         category = request.form.get('category')
         pay = request.form.get('pay')
         short = request.form.get('short')
-        biz_name = request.form.get('biz_name')
-        status = request.form.get('status')
+
         ###########TODO: Get this from the email passed in
-        poster_id = request.form.get('poster_id')
+        biz_name = request.form.get('biz_name') #fix
+        status = request.form.get('status') #fix
+        poster_id = request.form.get('poster_id') #fix
         print(poster_id)
         ##############
         print(short)
@@ -178,11 +185,12 @@ def create_job(id):
         )
         db.session.add(job)
         db.session.commit()
-        return Response(status=201, mimetype='application/json')
+        return redirect('/business/' + str(id))
+        #return Response(status=201, mimetype='application/json')
         # ! /bsuiness/ you need to get the id somehow
         # go to the business profile
         #return redirect('/business')
-        return render_template('business.html')
+        #return render_template('business.html')
 
 # Update job listing TODO: !!!!!!
 @app.route('/jobs/update', methods=['POST'])
@@ -243,6 +251,8 @@ def jobs():
     print(request.args.get('email'))
     user = User.query.filter(User.email == request.args.get('email')).first()
     users = User.query.all()
+    apps = Application.query.all()
+    print(apps[0].id)
     #print(user.name)
     jobs = Jobs.query.all()
     #business name
@@ -252,10 +262,20 @@ def jobs():
         #job.update( {'name' : "poes"} )
 
 
-    return render_template('jobs.html', jobs=jobs, user=user, users=users)
+    return render_template('jobs.html', jobs=jobs, user=user, users=users, apps=apps)
 
 @app.route('/jobs/apply/<int:job_id>/<int:user_id>/<string:email>')
 def apply(job_id, user_id, email):
+    poster = Jobs.query.filter(Jobs.id == job_id).first()
+    print("***************")
+    print(poster)
+    application = Application(
+        user_id=user_id,
+        job_id=job_id,
+        poster_id=poster.poster_id
+    )
+    db.session.add(application)
+    db.session.commit()
     return redirect(url_for('jobs', email=email))
     # job_link = '/jobs#job-' + str(job_id)
     # return redirect(job_link)# render_template('jobs.html')
