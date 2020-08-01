@@ -126,6 +126,10 @@ def register():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+        print(email, password)
+        
         # logic to determine if user exists
 
         # replace if true with logic to determine if user is a business
@@ -145,7 +149,8 @@ def jobs():
 
 @app.route('/jobs/apply/<int:job_id>/<int:user_id>')
 def apply(job_id, user_id):
-    return redirect('/jobs#foo')# render_template('jobs.html')
+    job_link = '/jobs#job-' + str(job_id)
+    return redirect(job_link)# render_template('jobs.html')
 
 @app.route('/employee/<int:id>')
 def employee(id):
