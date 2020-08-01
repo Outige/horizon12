@@ -15,16 +15,15 @@ def register():
         # takes you to the business profile
         return render_template('business.html')
 
-@app.route('/login', methods=['GET'])
-def getlogin():
-    return render_template('login.html')
-
-@app.route('/login/activate', methods=['POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    # logic to determine if user exists
+    if request.method == 'POST':
+        # logic to determine if user exists
 
-    # replace if true with logic to determine if user is a business
-    if True:
-        return render_template('business.html')
-    else:
-        return render_template('jobs.html')
+        # replace if true with logic to determine if user is a business
+        if True:
+            return render_template('business.html')
+        else:
+            return render_template('jobs.html')
+    elif request.method == 'GET':
+        return render_template('login.html')
