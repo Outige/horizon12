@@ -95,9 +95,21 @@ if not User.query.filter(User.email == 'admin@example.com').first():
     db.session.commit()
 
 
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('register.html')
+    if request.method == 'GET':
+        return render_template('register.html')
+    elif request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+        name = request.form.get('name')
+        print(email, password, name)
+        if request.form.getlist('isbusiness') == []:
+            # takes employee to employee profile
+            return redirect('/login')
+        else:
+            # takes you to the business profile
+            return redirect('/login')
 
 @app.route('/jobs/add', methods=['POST'])
 def add_job():
@@ -112,6 +124,19 @@ def add_job():
     db.session.add(job)
     db.session.commit()
     return Response(status=201, mimetype='application/json')
+
+@app.route('/jobs/create', methods=['GET', 'POST'])
+def create_job():
+    if request.method == 'GET':
+        return render_template('job.htnl')
+    elif request.method == 'POST':
+        title = request.form.get('title')
+        location = request.form.get('location')
+        category = request.form.get('category')
+        pay = request.form.get('pay')
+        short = request.form.get('short')
+        # ! /bsuiness/ you need to get the id somehow
+        return redirect('/business/')
 
 
 @app.route('/register', methods=['POST'])
