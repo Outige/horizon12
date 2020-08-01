@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 import datetime
 from flask_sqlalchemy import SQLAlchemy
 from flask_user import current_user, login_required, roles_required, UserManager, UserMixin
+from flask import Response
 
 
 # Class-based application configuration
@@ -31,7 +32,7 @@ db = SQLAlchemy(app)
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    active = db.Column('is_active', db.Boolean(), nullable=False, server_default='1')
+    biz_bool = db.Column('biz_bool', db.Boolean(), nullable=False, server_default='1')
 
     # User authentication information. The collation='NOCASE' is required
     # to search case insensitively when USER_IFIND_MODE is 'nocase_collation'.
@@ -59,6 +60,15 @@ class UserRoles(db.Model):
     user_id = db.Column(db.Integer(), db.ForeignKey('users.id', ondelete='CASCADE'))
     role_id = db.Column(db.Integer(), db.ForeignKey('roles.id', ondelete='CASCADE'))
 
+class Jobs(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    title = db.Column(db.String(1000))
+    location = db.Column(db.String(1000))
+    category = db.Column(db.String(1000))
+    pay = db.Column(db.String(1000))
+    short = db.Column(db.String(1000))
+    user_id = db.Column(db.Integer(), db.ForeignKey('users.id', ondelete='CASCADE')) #the foreign key to the user table
+
 # Create all database tables
 db.create_all()
 
@@ -67,7 +77,7 @@ if not User.query.filter(User.email == 'member@example.com').first():
     user = User(
         email='member@example.com',
         email_confirmed_at=datetime.datetime.utcnow(),
-        password=user_manager.hash_password('Password1'),
+        password='Password1',
     )
     db.session.add(user)
     db.session.commit()
@@ -77,7 +87,7 @@ if not User.query.filter(User.email == 'admin@example.com').first():
     user = User(
         email='admin@example.com',
         email_confirmed_at=datetime.datetime.utcnow(),
-        password=user_manager.hash_password('Password1'),
+        password='Password1',
     )
     user.roles.append(Role(name='Admin'))
     user.roles.append(Role(name='Agent'))
@@ -88,6 +98,21 @@ if not User.query.filter(User.email == 'admin@example.com').first():
 @app.route('/', methods=['GET'])
 def index():
     return render_template('register.html')
+
+@app.route('/jobs/add', methods=['POST'])
+def add_job():
+    job = Jobs(
+        title='Cleaning needed',
+        location='Cape Town',
+        category='Cleaning',
+        pay='50',
+        short='Short description',
+        user_id=1,
+    )
+    db.session.add(job)
+    db.session.commit()
+    return Response(status=201, mimetype='application/json')
+
 
 @app.route('/register', methods=['POST'])
 def register():
