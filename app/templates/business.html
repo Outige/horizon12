@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Some business name - also jinja 2 kak</title>
+{% endblock%}
+
+{% block body %}
+    <!-- ! This 3 is also jinja2 kakak -->
+<a href="/employee/3">User profile - kinda fixme</a>
+<br>
+<div>
+    <h1>Job #1</h1>
+    <h2>Description</h2>
+    <h3>R 300</h3>
+    <a href="#">Apply</a>
+    <br>
+    <!-- ! So this is gonna be jinja2 teritory -->
+    <!-- ! the 2 here: we will be looping through some job object -->
+    <!-- ! and we get job.id instead of 2 -->
+    <a href="/jobs/2">See this job</a>
+</div>
+{% endblock%}

@@ -19,13 +19,31 @@ def register():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        print('works')
         # logic to determine if user exists
 
         # replace if true with logic to determine if user is a business
-        if True:
+        if False:
             return render_template('business.html')
         else:
-            return render_template('jobs.html')
+            return redirect('/jobs')
     elif request.method == 'GET':
         return render_template('login.html')
+
+# ?-----------------------
+# Employee
+# ?-----------------------
+@app.route('/jobs')
+def jobs():
+    return render_template('jobs.html')
+
+@app.route('/jobs/apply/<int:job_id>/<int:user_id>')
+def apply(job_id, user_id):
+    return redirect('/jobs#foo')# render_template('jobs.html')
+
+@app.route('/employee/<int:id>')
+def employee(id):
+    return render_template('employee.html', id=id)
+
+@app.route('/business/<int:id>')
+def business(id):
+    return render_template('business.html', id=id)
