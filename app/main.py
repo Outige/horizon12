@@ -61,6 +61,9 @@ class UserRoles(db.Model):
 
 class Jobs(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
+
+    poster_id = db.Column(db.String(1000))
+
     title = db.Column(db.String(1000))
     location = db.Column(db.String(1000))
     category = db.Column(db.String(1000))
@@ -153,6 +156,10 @@ def create_job():
         category = request.form.get('category')
         pay = request.form.get('pay')
         short = request.form.get('short')
+        ###########TODO:
+        poster_id = request.form.get('poster_id')
+        print(poster_id)
+        ##############
         print(short)
         job = Jobs(
             title=title,
@@ -160,9 +167,11 @@ def create_job():
             category=category,
             pay=pay,
             short=short,
+            poster_id=poster_id,
         )
         db.session.add(job)
         db.session.commit()
+        return Response(status=201, mimetype='application/json')
         # ! /bsuiness/ you need to get the id somehow
         # go to the business profile
         #return redirect('/business')
