@@ -7,9 +7,40 @@
 
 
 {% block body %}
-<!-- ! This 3 is also jinja2 kakak -->
-<a href="/employee/3">User profile</a>
-<br>
+
+
+{% for job in jobs %}
+<div class="job-listing">
+    <div class="job-title">
+        <img id="pp" src="../static/img/interior-wall-paint-job.jpg">
+        <div class="job-text">
+            <!-- <h2 class="job-name">Blowjob Paintjob</h2> -->
+            <h2 class="job-name">{{ job.title }}</h2>
+            <br>
+            <h4 class="co-name">need company name</h4>
+        </div>
+    </div>
+    <div class="job-extra">
+        <p class="pay">{{ job.pay }}</p>
+        <p class="job-desc">{{ job.short }}</p>
+    </div>
+
+    <!-- <a href="/jobs/apply/2/2"> -->
+    <a href="/jobs/apply/2/{{ user.id }}">
+
+        <div class="apply">
+            <p style="color: white; padding-top: 15px; padding-bottom: 20px; font-size: 2rem;">Apply</p>
+        </div>
+    </a>
+
+
+</div>
+{% endfor %}
+
+
+
+
+
 <div class="job-listing">
     <!-- ! So this is gonna be jinja2 teritory -->
     <!-- ! the 2 here: we will be looping through some job object -->
@@ -29,7 +60,9 @@
         </p>
     </div>
 
-    <a href="/jobs/apply/2/2">
+    <!-- <a href="/jobs/apply/2/2"> -->
+    <a href="/jobs/apply/2/{{ user.id }}">
+
         <div class="apply">
             <p style="color: white; padding-top: 15px; padding-bottom: 20px; font-size: 2rem;">Apply</p>
         </div>
@@ -37,6 +70,7 @@
 
 
 </div>
+
 <div class="job-listing">
     <!-- ! So this is gonna be jinja2 teritory -->
     <!-- ! the 2 here: we will be looping through some job object -->
