@@ -255,29 +255,36 @@ def jobs():
     print(apps[0].id)
     #print(user.name)
     jobs = Jobs.query.all()
-    brain = {}
-    x = 0
+    jobs2 = []
     for job in jobs:
+        j = {}
+        j['id'] = job.id
+        j['poster_id'] = job.poster_id
+        j['biz_name'] = job.biz_name
+        j['title'] = job.title
+        j['location'] = job.location
+        j['category'] = job.category
+        j['pay'] = job.pay
+        j['short'] = job.short
+        j['status'] = job.status
+        j['user_id'] = job.user_id
+        j['applied'] = False
+
+        # for app in apps:
+        #     print(app.job_id, j['id'], app.user_id, user.id, app.id)
+        #     if app.job_id == j['id'] and app.user_id == user.id:
+        #         j['applied'] = True
+        #         print('TUE\n\n')
+        #         break
         for app in apps:
-            if job.id in brain:
-                print("Bruh")
-            else:
-                print("Not present")
-                if user.id == app.user_id:
-                    brain[job.id] = True
-            #if brain[]
-            #if user.id == app.user_id && 
-               # brain[job.id] = "red"
-
-    print(brain)
-    #business name
-    #jobbies = {}
-    #for job in jobs:
-        #jobbies.update(job)
-        #job.update( {'name' : "poes"} )
+            print(app.user_id, user.id)
+            if app.user_id == user.id and app.job_id == j['id']:
+                j['applied'] = True
+                break
+        jobs2.append(j)
 
 
-    return render_template('jobs.html', jobs=jobs, user=user, users=users, apps=apps)
+    return render_template('jobs.html', jobs=jobs2, user=user, users=users, apps=apps)
 
 @app.route('/jobs/apply/<int:job_id>/<int:user_id>/<string:email>')
 def apply(job_id, user_id, email):
