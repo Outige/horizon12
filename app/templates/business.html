@@ -36,10 +36,89 @@
 
 </div>
 
+
+{% for job in jobs %}
 <div class="job-listing">
-    <!-- ! So this is gonna be jinja2 teritory -->
-    <!-- ! the 2 here: we will be looping through some job object -->
-    <!-- ! and we get job.id instead of 2 -->
+    <div class="job-title">
+        <img id="pp" src="../static/img/business/1.jpg">
+        <div class="job-text">
+            <h2 class="job-name">{{ job.title }}</h2>
+            <br>
+            <h4 class="co-name">{{ job.biz_name }}</h4>
+        </div>
+    </div>
+    <div class="job-extra">
+        <p class="pay">{{ job.pay }}</p>
+        <p class="job-desc">{{ job.short }}</p>
+    </div>
+
+
+        {% for app in job.apps %}
+        <div class="apply">
+        <div class="worker">
+            <p>{{ app }}</p>
+        </div>
+        <a href="/jobs/accept/{{job.poster_id}}/{{job.id}}/{{app}}">
+            <div class="accept">
+                <p style="margin: 0;">
+                    accept
+                </p>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+
+
+    <!-- <div class="apply">
+        <div class="worker">
+            <p>
+                Piet Fourie
+            </p>
+        </div>
+        <a href="#">
+            <div class="accept">
+                <p style="margin: 0;">
+                    accept
+                </p>
+            </div>
+        </a>
+    </div>
+    <div class="apply">
+        <div class="worker">
+            <p>
+                Tieg O'Sullivan
+            </p>
+        </div>
+        <a href="#">
+            <div class="accept">
+                <p style="margin: 0;">
+                    accept
+                </p>
+            </div>
+        </a>
+    </div>
+    <div class="apply">
+        <div class="worker">
+            <p>
+                Robo-painter 2000
+            </p>
+        </div>
+        <a href="some kak somewhere">
+            <div class="accept">
+                <p style="margin: 0;">
+                    accept
+                </p>
+            </div>
+        </a>
+    </div> -->
+
+
+</div>
+{% endfor %}
+
+
+
+<!-- <div class="job-listing">
     <div class="job-title">
         <img id="pp" src="../static/img/business/1.jpg">
         <div class="job-text">
@@ -114,12 +193,9 @@
     </div>
 
 
-</div>
+</div> -->
 
-<div class="job-listing">
-    <!-- ! So this is gonna be jinja2 teritory -->
-    <!-- ! the 2 here: we will be looping through some job object -->
-    <!-- ! and we get job.id instead of 2 -->
+<!-- <div class="job-listing">
     <div class="job-title">
         <img id="pp" src="../static/img/interior-wall-paint-job.jpg">
         <div class="job-text">
@@ -193,6 +269,6 @@
     </div>
 
 
-</div>
+</div> -->
 
 {% endblock%}

@@ -193,6 +193,10 @@ def create_job(id):
         #return redirect('/business')
         #return render_template('business.html')
 
+@app.route('/jobs/accept/<int:biz_id>/<int:job_id>/<int:user_id>', methods=['GET'])
+def accept(biz_id, job_id, user_id):
+    return redirect('/business/' + str(biz_id))
+
 # Update job listing TODO: !!!!!!
 @app.route('/jobs/update', methods=['POST'])
 def update_job():
@@ -237,7 +241,9 @@ def login():
 
         if ( User.query.filter(User.email == email).first().biz_bool ):
             #take to the business page
-            return render_template('business.html')
+            # return render_template('business.html')
+            id = User.query.filter(User.email == email).first().id
+            return redirect('/business/' + str(id))
         else:
             #take to the job board
             return redirect(url_for('jobs', email=email))
@@ -277,7 +283,6 @@ def jobs():
         #         print('TUE\n\n')
         #         break
         for app in apps:
-            print(app.user_id, user.id)
             if app.user_id == user.id and app.job_id == j['id']:
                 j['applied'] = True
                 break
@@ -308,7 +313,53 @@ def employee(id):
 
 @app.route('/business/<int:id>')
 def business(id):
-    return render_template('business.html', id=id)
+    djobs = Jobs.query.all()
+    dapps = Application.query.all()
+    dusers = User.query.all()
+    jobs = []
+    for djob in djobs:
+        print(djob, djob.poster_id, id)
+        job = {}
+
+        if int(djob.poster_id) == int(id):
+            job['id'] = djob.id
+            job['poster_id'] = djob.poster_id
+            job['biz_name'] = djob.biz_name
+            job['title'] = djob.title
+            job['location'] = djob.location
+            job['category'] = djob.category
+            job['pay'] = djob.pay
+            job['short'] = djob.short
+            job['status'] = djob.status
+            job['user_id'] = djob.user_id
+            job['apps'] = []
+            for dapp in dapps:
+                if int(dapp.poster_id) == int(id) and dapp.job_id == djob.id:
+                    job['apps'].append(dapp.user_id)
+
+        # job['apps'] = []
+        # i = 0
+        # for duser in dusers:
+        #     app = {}
+        #     for dapp in dapps:
+        #         if duser.id == dapp.user_id and djob.id == dapp.job_id:
+        #             app['name'] = duser.name
+        #             job['apps'].append(app)
+        #             break
+        #     # job['apps'][i]['']
+        #     i+=1
+        # now get appliers
+        jobs.append(job)
+    # apps = {}
+    # for job in jobs:
+    #     apps[job['id']] = set()
+    # for duser in dusers:
+    #     for dapp in dapps:
+    #         if dapp.user_id == duser.id and dapp.job_id in :
+    #             apps[dapp.job_id].add(duser.name)
+                
+    print(jobs)
+    return render_template('business.html', id=id, jobs=jobs)
 
 # Block chain
 @app.route('/addcontract', methods=['POST'])
