@@ -1,6 +1,13 @@
-{% extends 'base.html' %} {% block head %}
+{% extends 'base.html' %}
+
+{% block head %}
 <title>[some employee name with jinja kak]</title>
-<link rel="stylesheet" href="../static/styles/employee.css"> {% endblock%} {% block body %}
+<link rel="stylesheet" href="../static/styles/employee.css">
+<link rel="stylesheet" href="../static/styles/jobs.css">
+
+{% endblock%}
+
+{% block body %}
 <a href="">Employee profile</a>
 
 <div class="navbar">
@@ -36,16 +43,19 @@
 
 </div>
 
-<title>Job listings</title>
-<link rel="stylesheet" href="../static/styles/jobs.css"> {% endblock%} {% block body %} {% for job in jobs %}
+
+
+
+{% for job in jobs %}
 <div class="job-listing">
+    <h2>id: {{ job.id }}</h2>
     <div class="job-title">
         <img id="pp" src="../static/img/interior-wall-paint-job.jpg">
         <div class="job-text">
             <!-- <h2 class="job-name">Blowjob Paintjob</h2> -->
             <h2 class="job-name">{{ job.title }}</h2>
             <br>
-            <h4 class="co-name">need company name</h4>
+            <h4 class="co-name">{{ job.biz_name }}</h4>
         </div>
     </div>
     <div class="job-extra">
@@ -53,8 +63,8 @@
         <p class="job-desc">{{ job.short }}</p>
     </div>
 
-    <!-- <a href="/jobs/apply/2/2"> -->
-    <a href="/jobs/apply/2/{{ user.id }}/{{ user.email }}">
+
+    <a href="#">
 
         <div class="apply">
             <p style="color: white; padding-top: 15px; padding-bottom: 20px; font-size: 2rem;">Apply</p>
@@ -62,5 +72,11 @@
     </a>
 
 
+
 </div>
-{% endfor %} {% endblock%}
+{% endfor %}
+
+
+
+
+{% endblock%}
