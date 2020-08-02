@@ -1,6 +1,7 @@
 {% extends 'base.html' %} {% block head %}
 <title>Job listings</title>
-<link rel="stylesheet" href="../static/styles/jobs.css"> {% endblock%} {% block body %} {% for job in jobs %}
+<link rel="stylesheet" href="../static/styles/jobs.css"> {% endblock%} {% block body %} 
+{% for job in jobs %}
 <div class="job-listing">
     <div class="job-title">
         <img id="pp" src="../static/img/interior-wall-paint-job.jpg">

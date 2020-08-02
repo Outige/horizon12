@@ -24,8 +24,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 120px;
-    height: 120px;
+    width: 140px;
+    height: 140px;
     border-radius: 50%;
     background: #edf4ff;
 }
@@ -108,7 +108,7 @@ h1 {
     margin-top: 0;
     margin-left: 25px;
     margin-right: 25px;
-    margin-bottom: 0;
+    margin-bottom: 25px;
     text-align: center;
 }
 
@@ -209,15 +209,30 @@ h1 {
 }
 
 .worker {
-    padding: 15px;
+    padding: 10px;
+    padding-top: 10px;
 }
 
 .accept {
     color: #50c085;
     padding: 10px;
-    padding-top: 12px;
+    padding-top: 10px;
     border-color: #50c085;
     border-width: 2px;
     border-style: double;
     border-radius: 5px;
 }
+
+.create {
+    color: white;
+    padding: 10px;
+    padding-top: 10px;
+    border-color: tomato;
+    border-width: 2px;
+    border-style: double;
+    border-radius: 5px;
+    background-color: tomato;
+}
+
+
+/** / */
