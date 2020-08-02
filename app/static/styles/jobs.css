@@ -87,10 +87,39 @@ h1 {
     display: grid;
 }
 
-.apply {
+.apply-action {
     min-width: 100%;
     text-align: center;
     height: 50px;
     background-color: #50c085;
     border-radius: 15px;
+}
+
+.apply {
+    min-width: 100%;
+    text-align: center;
+    height: 50px;
+    background-color: #50c085;
+    color: white;
+    border-radius: 15px;
+}
+
+.pending {
+    background-color: #dedede;
+    color: white;
+}
+
+.waiting {
+    background-color: #dedede;
+    color: white;
+}
+
+.confirm {
+    background-color: #50c085;
+    color: white;
+}
+
+.initiate {
+    background-color: #367bc9;
+    color: white;
 }

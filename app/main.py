@@ -213,8 +213,8 @@ def accept(biz_id, job_id, user_id):
 
     return redirect('/business/' + str(biz_id))
 
-@app.route('/jobs/finish/<int:biz_bool>/<int:job_id>', methods=['GET'])
-def finish(biz_bool, job_id):
+@app.route('/jobs/finish/<int:biz_bool>/<int:job_id>/<int:id>', methods=['GET'])
+def finish(biz_bool, job_id, id):
     job = Jobs.query.filter(Jobs.id == job_id).first()
     if biz_bool:
         if (job.status == "1"):
@@ -223,6 +223,8 @@ def finish(biz_bool, job_id):
         elif (job.status == "2"):
             #finish
             job.status = 4
+        db.session.commit()
+        return redirect('/business/' + str(id))
     else:
         if (job.status == "1"):
             #change to 2
@@ -231,9 +233,8 @@ def finish(biz_bool, job_id):
         elif (job.status == "3"):
             #finish
             job.status = 4
-
-    db.session.commit()
-    return ''
+        db.session.commit()
+        return redirect('/employee/' + str(id))
 
 # Update job listing TODO: !!!!!!
 @app.route('/jobs/update', methods=['POST'])
@@ -296,7 +297,6 @@ def jobs():
     user = User.query.filter(User.email == request.args.get('email')).first()
     users = User.query.all()
     apps = Application.query.all()
-    print(apps[0].id)
     #print(user.name)
     jobs = Jobs.query.all()
     jobs2 = []
@@ -349,7 +349,6 @@ def apply(job_id, user_id, email):
 def employee(id):
     user = User.query.filter(User.id == id).first()
     apps = Application.query.all()
-    print(apps[0].id)
     #print(user.name)
     jobs = Jobs.query.all()
     jobs2 = []
