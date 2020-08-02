@@ -137,7 +137,7 @@ job = Jobs(
             category="Building",
             pay="R1000",
             short="Brick layer needed",
-            poster_id=poster_id,
+            poster_id=5,
             biz_name="Uber",
             status="0",
         )
@@ -148,7 +148,7 @@ job = Jobs(
             category="Cleaning",
             pay="R750",
             short="Cleaner needed",
-            poster_id=poster_id,
+            poster_id=4,
             biz_name="Cutters",
             status="0",
         )
@@ -159,7 +159,7 @@ job = Jobs(
             category="General",
             pay="R500",
             short="In need of a good handyman",
-            poster_id=poster_id,
+            poster_id=5,
             biz_name="Uber",
             status="0",
         )
@@ -170,7 +170,7 @@ job = Jobs(
             category="Building",
             pay="R1250",
             short="I need a strong guy",
-            poster_id=poster_id,
+            poster_id=6,
             biz_name="Build",
             status="0",
         )
@@ -181,7 +181,7 @@ job = Jobs(
             category="Building",
             pay="R250",
             short="Helping around the kitchen",
-            poster_id=poster_id,
+            poster_id=4,
             biz_name="Cutters",
             status="0",
         )

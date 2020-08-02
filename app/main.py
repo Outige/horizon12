@@ -201,11 +201,11 @@ def accept(biz_id, job_id, user_id):
     Application.query.filter(Application.job_id == job_id).delete()
     
 
-    #r = requests.post('http://robabrams.homeip.net:9999/api/create', data = {
-    #"companyID": biz_id,
-    #"userID": user_id,
-    #"amount": job.pay,
-    #"jobID": job_id})
+    r = requests.post('http://robabrams.homeip.net:9999/api/create', data = {
+    "companyID": biz_id,
+    "userID": user_id,
+    "amount": job.pay,
+    "jobID": job_id})
 
     db.session.commit()
 
@@ -223,6 +223,14 @@ def finish(biz_bool, job_id, id):
         elif (job.status == "2"):
             #finish
             job.status = 4
+            #finish smart contract
+            r = requests.post('http://robabrams.homeip.net:9999/api/update', data = { 
+            "companyID": job.poster_id,
+            "userID": job.user_id,
+            "amount": job.pay,
+            "jobID": job_id,
+            "finished": "1"
+            })
         db.session.commit()
         return redirect('/business/' + str(id))
     else:
@@ -233,6 +241,14 @@ def finish(biz_bool, job_id, id):
         elif (job.status == "3"):
             #finish
             job.status = 4
+            r = requests.post('http://robabrams.homeip.net:9999/api/update', data = { 
+            "companyID": job.poster_id,
+            "userID": job.user_id,
+            "amount": job.pay,
+            "jobID": job_id,
+            "finished": "1"
+            })
+
         db.session.commit()
         return redirect('/employee/' + str(id))
 
@@ -297,6 +313,10 @@ def jobs():
     user = User.query.filter(User.email == request.args.get('email')).first()
     users = User.query.all()
     apps = Application.query.all()
+<<<<<<< HEAD
+=======
+    #print(apps[0].id)
+>>>>>>> a3a9e5f786ee3b4b13ea766988f38fa6d76c599f
     #print(user.name)
     jobs = Jobs.query.all()
     jobs2 = []
