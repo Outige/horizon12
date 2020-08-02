@@ -64,12 +64,49 @@
     </div>
 
 
-    <a href="#">
 
-        <div class="apply">
-            <p style="color: white; padding-top: 15px; padding-bottom: 20px; font-size: 2rem;">Apply</p>
-        </div>
-    </a>
+    
+
+    {% if job.status == '0' %}
+        {% if job.applied %}
+            <a href="#">
+
+                <div class="apply">
+                    <p style="color: grey; padding-top: 15px; padding-bottom: 20px; font-size: 2rem;">Pending</p>
+                </div>
+            </a>
+        {% else %}
+            <a href="/jobs/apply/{{ job.id }}/{{ user.id }}/{{ user.email }}">
+
+                <div class="apply">
+                    <p style="color: white; padding-top: 15px; padding-bottom: 20px; font-size: 2rem;">Apply</p>
+                </div>
+            </a>
+        {% endif %}
+    {% endif %}
+    
+    
+    {% if job.status == '1' or job.status == '2' %}
+        {% if job.user_id == user.id %}
+            <a href="/jobs/finish/0/{{ job.id }}">
+
+                <div class="apply">
+                    <p style="color: blue; padding-top: 15px; padding-bottom: 20px; font-size: 2rem;">Complete</p>
+                </div>
+            </a>
+        {% endif %}
+    {% endif %}
+
+    {% if job.status == '3' %}
+        {% if job.user_id == user.id %}
+            <a href="/jobs/finish/0/{{ job.id }}">
+
+                <div class="apply">
+                    <p style="color: orchid; padding-top: 15px; padding-bottom: 20px; font-size: 2rem;">Complete</p>
+                </div>
+            </a>
+        {% endif %}
+    {% endif %}
 
 
 
