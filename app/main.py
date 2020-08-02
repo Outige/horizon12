@@ -255,6 +255,21 @@ def jobs():
     print(apps[0].id)
     #print(user.name)
     jobs = Jobs.query.all()
+    brain = {}
+    x = 0
+    for job in jobs:
+        for app in apps:
+            if job.id in brain:
+                print("Bruh")
+            else:
+                print("Not present")
+                if user.id == app.user_id:
+                    brain[job.id] = True
+            #if brain[]
+            #if user.id == app.user_id && 
+               # brain[job.id] = "red"
+
+    print(brain)
     #business name
     #jobbies = {}
     #for job in jobs:
