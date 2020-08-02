@@ -39,10 +39,10 @@
     
     {% if job.status == '1' %}
         {% if job.user_id == user.id %}
-            <a href="/jobs/apply/{{ job.id }}/{{ user.id }}/{{ user.email }}">
+            <a href="/jobs/finish/0/{{ job.id }}">
 
-                <div class="finish">
-                    <p style="color: blue; padding-top: 15px; padding-bottom: 20px; font-size: 2rem;">Apply</p>
+                <div class="apply">
+                    <p style="color: blue; padding-top: 15px; padding-bottom: 20px; font-size: 2rem;">Complete</p>
                 </div>
             </a>
         {% endif %}

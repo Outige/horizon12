@@ -213,6 +213,10 @@ def accept(biz_id, job_id, user_id):
 
     return redirect('/business/' + str(biz_id))
 
+@app.route('/jobs/finish/<int:biz_bool>/<int:job_id>', methods=['GET'])
+def finish(biz_bool, job_id):
+    return ''
+
 # Update job listing TODO: !!!!!!
 @app.route('/jobs/update', methods=['POST'])
 def update_job():
