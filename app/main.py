@@ -319,3 +319,20 @@ def addcontract():
     "amount": "69",
     "jobID": "4"})
     return Response(status=201, mimetype='application/json')
+
+@app.route('/getcontract', methods=['GET'])
+def getcontract():
+    r = requests.get('http://robabrams.homeip.net:9999/api/<jobID>')
+    return Response(status=200, mimetype='application/json')
+
+@app.route('/changecontract', methods=['POST'])
+def changecontract():
+    #updates json of the given jobID in the json
+    r = requests.post('http://robabrams.homeip.net:9999/api/update', data = { 
+    "companyID": "101",
+    "userID": "poop",
+    "amount": "70",
+    "jobID": "4",
+    #"finished": "1"
+    })
+    return Response(status=201, mimetype='application/json')
