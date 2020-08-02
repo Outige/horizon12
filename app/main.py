@@ -347,42 +347,7 @@ def apply(job_id, user_id, email):
 
 @app.route('/employee/<int:id>')
 def employee(id):
-    # user = User.query.filter(User.email == request.args.get('email')).first()
-    # users = User.query.all()
-    # dapps = Application.query.all()
-    # jobs = Jobs.query.all()
-
-    # apps = {}
-    # for dapp in dapps:
-    #     if dapp.user_id == id:
-    #         apps[dapp.job_id] = 1
-    # for job in jobs:
-    #     if job.user_id == id:
-    #         apps[job.user_id] = 1
-
-
-
-
-
-    # jobs2 = []
-    # for job in jobs:
-    #     if apps.get(job.id, 0):
-    #         j = {}
-    #         j['id'] = job.id
-    #         j['poster_id'] = job.poster_id
-    #         j['biz_name'] = job.biz_name
-    #         j['title'] = job.title
-    #         j['location'] = job.location
-    #         j['category'] = job.category
-    #         j['pay'] = job.pay
-    #         j['short'] = job.short
-    #         j['status'] = job.status
-    #         j['user_id'] = job.user_id
-    #         jobs2.append(j)
-# get my id
-    print(request.args.get('email'))
-    user = User.query.filter(User.email == request.args.get('email')).first()
-    users = User.query.all()
+    user = User.query.filter(User.id == id).first()
     apps = Application.query.all()
     print(apps[0].id)
     #print(user.name)
@@ -411,7 +376,12 @@ def employee(id):
                     jobs2.append(j)
                     break
 
-    return render_template('employee.html', id=id, jobs=jobs2)
+    return render_template('employee.html', id=id, jobs=jobs2, user=user)
+
+@app.route('/foo/<string:email>')
+def foo(email):
+    return redirect(url_for('jobs', email=email))
+
 
 @app.route('/business/<int:id>')
 def business(id):

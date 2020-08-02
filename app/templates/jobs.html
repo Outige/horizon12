@@ -1,6 +1,9 @@
 {% extends 'base.html' %} {% block head %}
 <title>Job listings</title>
-<link rel="stylesheet" href="../static/styles/jobs.css"> {% endblock%} {% block body %} 
+<link rel="stylesheet" href="../static/styles/jobs.css"> {% endblock%}
+
+{% block body %}
+<a href="/employee/{{ user.id }}" style="color:rgb(233, 0, 213);">Go to profile</a>
 {% for job in jobs %}
 <div class="job-listing">
     <h2>id: {{ job.id }}</h2>
