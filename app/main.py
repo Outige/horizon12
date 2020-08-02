@@ -215,6 +215,24 @@ def accept(biz_id, job_id, user_id):
 
 @app.route('/jobs/finish/<int:biz_bool>/<int:job_id>', methods=['GET'])
 def finish(biz_bool, job_id):
+    job = Jobs.query.filter(Jobs.id == job_id).first()
+    if biz_bool:
+        if (job.status == "1"):
+            #change to 3
+            job.status = 3
+        elif (job.status == "2"):
+            #finish
+            job.status = 4
+    else:
+        if (job.status == "1"):
+            #change to 2
+            job.status = 2
+
+        elif (job.status == "3"):
+            #finish
+            job.status = 4
+
+    db.session.commit()
     return ''
 
 # Update job listing TODO: !!!!!!
