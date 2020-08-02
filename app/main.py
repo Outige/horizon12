@@ -81,27 +81,27 @@ class Application(db.Model):
 # Create all database tables
 db.create_all()
 
-# Create 'member@example.com' user with no roles
-if not User.query.filter(User.email == 'member@example.com').first():
-    user = User(
-        email='member@example.com',
-        email_confirmed_at=datetime.datetime.utcnow(),
-        password='Password1',
-    )
-    db.session.add(user)
-    db.session.commit()
+# # Create 'member@example.com' user with no roles
+# if not User.query.filter(User.email == 'member@example.com').first():
+#     user = User(
+#         email='member@example.com',
+#         email_confirmed_at=datetime.datetime.utcnow(),
+#         password='Password1',
+#     )
+#     db.session.add(user)
+#     db.session.commit()
 
-# Create 'admin@example.com' user with 'Admin' and 'Agent' roles
-if not User.query.filter(User.email == 'admin@example.com').first():
-    user = User(
-        email='admin@example.com',
-        email_confirmed_at=datetime.datetime.utcnow(),
-        password='Password1',
-    )
-    user.roles.append(Role(name='Admin'))
-    user.roles.append(Role(name='Agent'))
-    db.session.add(user)
-    db.session.commit()
+# # Create 'admin@example.com' user with 'Admin' and 'Agent' roles
+# if not User.query.filter(User.email == 'admin@example.com').first():
+#     user = User(
+#         email='admin@example.com',
+#         email_confirmed_at=datetime.datetime.utcnow(),
+#         password='Password1',
+#     )
+#     user.roles.append(Role(name='Admin'))
+#     user.roles.append(Role(name='Agent'))
+#     db.session.add(user)
+#     db.session.commit()
 
 # Register
 @app.route('/', methods=['GET', 'POST'])
