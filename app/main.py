@@ -195,6 +195,22 @@ def create_job(id):
 
 @app.route('/jobs/accept/<int:biz_id>/<int:job_id>/<int:user_id>', methods=['GET'])
 def accept(biz_id, job_id, user_id):
+    job = Jobs.query.filter(Jobs.id == job_id).first()
+    job.user_id = user_id
+    job.status = 1
+    Application.query.filter(Application.job_id == job_id).delete()
+    
+
+    #r = requests.post('http://robabrams.homeip.net:9999/api/create', data = {
+    #"companyID": biz_id,
+    #"userID": user_id,
+    #"amount": job.pay,
+    #"jobID": job_id})
+
+    db.session.commit()
+
+
+
     return redirect('/business/' + str(biz_id))
 
 # Update job listing TODO: !!!!!!
