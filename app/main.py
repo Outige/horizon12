@@ -313,10 +313,6 @@ def jobs():
     user = User.query.filter(User.email == request.args.get('email')).first()
     users = User.query.all()
     apps = Application.query.all()
-<<<<<<< HEAD
-=======
-    #print(apps[0].id)
->>>>>>> a3a9e5f786ee3b4b13ea766988f38fa6d76c599f
     #print(user.name)
     jobs = Jobs.query.all()
     jobs2 = []
