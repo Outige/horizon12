@@ -68,7 +68,7 @@
                     </a>
                 </div>
             {% endfor %}
-        {% elif job.status == '1' %}
+        {% elif job.status == '1' or job.status == '2'  or job.status == '3' %}
         <div class="apply">
             <div class="worker">
                 <p>{{job.user_id}}</p>
@@ -82,6 +82,22 @@
             </a>
         </div>
         {% endif %}
+
+        {% if job.status == '4'%}
+        <div class="apply">
+            <div class="worker">
+                <p>{{job.user_id}}</p>
+            </div>
+            <!-- <a href="/jobs/finish/1/{{ job.id }}">
+                <div class="accept">
+                    <p style="margin: 0;">
+                        complete
+                    </p>
+                </div>
+            </a> -->
+        </div>
+        {% endif %}
+        
 
 
     <!-- <div class="apply">

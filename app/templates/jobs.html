@@ -37,7 +37,7 @@
     {% endif %}
     
     
-    {% if job.status == '1' %}
+    {% if job.status == '1' or job.status == '2' or job.status == '3' %}
         {% if job.user_id == user.id %}
             <a href="/jobs/finish/0/{{ job.id }}">
 
@@ -47,6 +47,8 @@
             </a>
         {% endif %}
     {% endif %}
+
+    <!-- !4 display none is implicit -->
 
     <!-- <a href="/jobs/apply/2/{{ user.id }}/{{ user.email }}">
 
