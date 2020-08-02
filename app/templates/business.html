@@ -57,7 +57,7 @@
             {% for app in job.apps %}
                 <div class="apply">
                     <div class="worker">
-                        <p>{{ app }}</p>
+                        <p>{{ app.name }}</p>
                     </div>
                     <a href="/jobs/accept/{{job.poster_id}}/{{job.id}}/{{app}}">
                         <div class="accept">
@@ -71,7 +71,7 @@
         {% elif job.status == '1' or job.status == '2'  or job.status == '3' %}
         <div class="apply">
             <div class="worker">
-                <p>{{job.user_id}}</p>
+                <!-- <p>{{job.user_id}}</p> -->
             </div>
             <a href="/jobs/finish/1/{{ job.id }}/{{ job.poster_id }}">
                 <div class="accept">

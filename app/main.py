@@ -403,10 +403,16 @@ def business(id):
             job['short'] = djob.short
             job['status'] = djob.status
             job['user_id'] = djob.user_id
+            # job['apps'] = []
             job['apps'] = []
             for dapp in dapps:
                 if int(dapp.poster_id) == int(id) and dapp.job_id == djob.id:
-                    job['apps'].append(dapp.user_id)
+                    app = {}
+                    app['id'] = dapp.user_id
+                    for duser in dusers:
+                        if duser.id == dapp.user_id:
+                            app['name'] = duser.name
+                    job['apps'].append(app)
 
         # job['apps'] = []
         # i = 0
