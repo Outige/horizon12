@@ -53,20 +53,35 @@
     </div>
 
 
-        {% for app in job.apps %}
+        {% if job.status == '0' %}
+            {% for app in job.apps %}
+                <div class="apply">
+                    <div class="worker">
+                        <p>{{ app }}</p>
+                    </div>
+                    <a href="/jobs/accept/{{job.poster_id}}/{{job.id}}/{{app}}">
+                        <div class="accept">
+                            <p style="margin: 0;">
+                                accept
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        {% elif job.status == '1' %}
         <div class="apply">
-        <div class="worker">
-            <p>{{ app }}</p>
-        </div>
-        <a href="/jobs/accept/{{job.poster_id}}/{{job.id}}/{{app}}">
-            <div class="accept">
-                <p style="margin: 0;">
-                    accept
-                </p>
+            <div class="worker">
+                <p>{{job.user_id}}</p>
             </div>
-        </a>
-    </div>
-    {% endfor %}
+            <a href="#">
+                <div class="accept">
+                    <p style="margin: 0;">
+                        complete
+                    </p>
+                </div>
+            </a>
+        </div>
+        {% endif %}
 
 
     <!-- <div class="apply">
