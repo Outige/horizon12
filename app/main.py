@@ -419,7 +419,6 @@ def business(id):
             job['short'] = djob.short
             job['status'] = djob.status
             job['user_id'] = djob.user_id
-            # job['apps'] = []
             job['apps'] = []
             for dapp in dapps:
                 if int(dapp.poster_id) == int(id) and dapp.job_id == djob.id:
@@ -429,29 +428,8 @@ def business(id):
                         if duser.id == dapp.user_id:
                             app['name'] = duser.name
                     job['apps'].append(app)
-
-        # job['apps'] = []
-        # i = 0
-        # for duser in dusers:
-        #     app = {}
-        #     for dapp in dapps:
-        #         if duser.id == dapp.user_id and djob.id == dapp.job_id:
-        #             app['name'] = duser.name
-        #             job['apps'].append(app)
-        #             break
-        #     # job['apps'][i]['']
-        #     i+=1
-        # now get appliers
-        jobs.append(job)
-    # apps = {}
-    # for job in jobs:
-    #     apps[job['id']] = set()
-    # for duser in dusers:
-    #     for dapp in dapps:
-    #         if dapp.user_id == duser.id and dapp.job_id in :
-    #             apps[dapp.job_id].add(duser.name)
+            jobs.append(job)
                 
-    print(jobs)
     return render_template('business.html', id=id, jobs=jobs)
 
 # Block chain
