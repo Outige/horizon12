@@ -302,6 +302,7 @@ def login():
         else:
             #take to the job board
             return redirect(url_for('jobs', email=email))
+            # return redirect(url_for('jobs', email=email, _anchor="job-1"))
     elif request.method == 'GET':
         return render_template('login.html')
 
@@ -345,8 +346,8 @@ def jobs():
 
     return render_template('jobs.html', jobs=jobs2, user=user, users=users, apps=apps)
 
-@app.route('/jobs/apply/<int:job_id>/<int:user_id>/<string:email>')
-def apply(job_id, user_id, email):
+@app.route('/jobs/apply/<int:job_id>/<int:user_id>/<string:email>/<string:anchor>')
+def apply(job_id, user_id, email, anchor):
     poster = Jobs.query.filter(Jobs.id == job_id).first()
     print("***************")
     print(poster)
@@ -357,7 +358,9 @@ def apply(job_id, user_id, email):
     )
     db.session.add(application)
     db.session.commit()
-    return redirect(url_for('jobs', email=email))
+    # return redirect(url_for('jobs', email=email))
+    return redirect(url_for('jobs', email=email, _anchor=anchor))
+
     # job_link = '/jobs#job-' + str(job_id)
     # return redirect(job_link)# render_template('jobs.html')
 

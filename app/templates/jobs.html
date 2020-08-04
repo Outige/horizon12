@@ -5,7 +5,7 @@
 {% block body %}
 <a href="/employee/{{ user.id }}" style="color:#367bc9; padding: 5px; background-color: white; border-radius: 10px; margin-top: 2rem; margin-left: 1rem;">Go to profile</a>
 {% for job in jobs %}
-<div class="job-listing">
+<div class="job-listing" id="job-{{job.id}}">
     <div class="job-title">
         <img id="pp" src="../static/img/interior-wall-paint-job.jpg">
         <div class="job-text">
@@ -29,7 +29,7 @@
                 </div>
             </a>
         {% else %}
-            <a href="/jobs/apply/{{ job.id }}/{{ user.id }}/{{ user.email }}">
+            <a href="/jobs/apply/{{ job.id }}/{{ user.id }}/{{ user.email }}/job-{{job.id}}">
 
                 <div class="apply apply-action">
                     <p style="padding-top: 15px; padding-bottom: 20px; font-size: 2rem;">Apply</p>
