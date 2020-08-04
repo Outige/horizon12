@@ -123,3 +123,17 @@ h1 {
     background-color: #367bc9;
     color: white;
 }
+
+/* this is to limit max width on big screens */
+.job-listing {
+    max-width: 800px;
+    margin: 15px auto;
+}
+
+/* this is to style margins on smaller screens */
+@media only screen and (max-width: 830px) {
+    .job-listing {
+      /* background-color: lightblue; */
+      margin: 15px
+    }
+  }
